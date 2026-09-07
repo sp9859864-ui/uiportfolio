@@ -1,0 +1,2836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <!-- Add css link -->
+     <link rel="stylesheet" href="./css/style.css">
+    <!-- Add Bootstrap Link -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Add bootstrap icon klink -->
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <!-- Add font awesome link -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+</head>
+<body>
+
+  <!-- =========================================
+     SIMPLE PORTFOLIO INTRO
+========================================= -->
+<div class="hero-grid"></div>
+
+<div class="intro-loader" id="introLoader">
+
+    <div class="intro-inner">
+
+        <div class="intro-logo">
+           <img src="./images/logo.png" alt="">
+        </div>
+
+        <div class="intro-line">
+            <div id="introProgress"></div>
+        </div>
+
+        <div class="intro-info">
+            <span>CREATIVE DESIGNER</span>
+            <strong id="introNumber">0%</strong>
+        </div>
+
+    </div>
+
+</div>
+
+
+<style>
+
+/* =========================================
+   INTRO LOADER
+========================================= */
+
+.intro-loader {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100vh;
+
+    background: #050505;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 999999999;
+
+    transition: opacity 0.8s ease,
+                visibility 0.8s ease;
+}
+
+
+/* Hide */
+
+.intro-loader.intro-hide {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+
+/* Inner */
+
+.intro-inner {
+    width: 400px;
+    max-width: 80%;
+
+    text-align: center;
+}
+
+
+/* Logo */
+
+.intro-logo {
+    width: 400px;
+    animation: introLogo 1s ease forwards;
+}
+
+.intro-logo img{
+width: 100%;
+}
+.intro-logo span {
+    color: #00b8ff;
+}
+
+
+@keyframes introLogo {
+
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    70% {
+        transform: scale(1.08);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+}
+
+
+/* Line */
+
+.intro-line {
+    width: 100%;
+
+    height: 2px;
+
+    margin-top: 45px;
+
+    background: rgba(255,255,255,0.15);
+
+    overflow: hidden;
+}
+
+
+#introProgress {
+    width: 0%;
+
+    height: 100%;
+
+    background: #00b8ff;
+
+    box-shadow:
+        0 0 10px #00b8ff,
+        0 0 25px #00b8ff;
+}
+
+
+/* Info */
+
+.intro-info {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-top: 20px;
+}
+
+
+.intro-info span {
+    color: #777;
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+}
+
+
+.intro-info strong {
+    color: #00b8ff;
+
+    font-size: 14px;
+}
+
+
+/* Background Glow */
+
+.intro-loader::before {
+    content: "";
+
+    position: absolute;
+
+    width: 300px;
+    height: 300px;
+
+    border-radius: 50%;
+
+    background: rgba(0,184,255,0.08);
+
+    filter: blur(100px);
+
+    pointer-events: none;
+}
+
+
+/* Mobile */
+
+@media (max-width: 576px) {
+
+    .intro-inner {
+        width: 300px;
+    }
+
+   .intro-logo {
+    width: 100%;
+    animation: introLogo 1s ease forwards;
+}
+
+.intro-logo img{
+width: 100%;
+}
+    .intro-line {
+        margin-top: 30px;
+    }
+
+    .intro-info span {
+        font-size: 8px;
+
+        letter-spacing: 3px;
+    }
+
+}
+
+</style>
+
+
+<script>
+
+/* =========================================
+   PORTFOLIO INTRO JAVASCRIPT
+========================================= */
+
+(function () {
+
+    var loader = document.getElementById("introLoader");
+    var progressBar = document.getElementById("introProgress");
+    var number = document.getElementById("introNumber");
+
+    var progress = 0;
+
+    var timer = setInterval(function () {
+
+        progress++;
+
+        progressBar.style.width = progress + "%";
+
+        number.innerHTML = progress + "%";
+
+
+        /* 100% complete */
+
+        if (progress >= 100) {
+
+            clearInterval(timer);
+
+            setTimeout(function () {
+
+                loader.classList.add("intro-hide");
+
+            }, 600);
+
+        }
+
+    }, 25);
+
+})();
+
+</script>
+
+<!-- Header start -->
+
+<header class="main-header">
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container header-container">
+
+      <!-- Logo -->
+      <a class="navbar-brand header-logo" href="#home">
+        <img src="images/logo.png" alt="Logo">
+      </a>
+
+      <!-- Mobile Toggle -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#mainNavbar"
+        aria-controls="mainNavbar"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Navbar -->
+      <div class="collapse navbar-collapse" id="mainNavbar">
+
+        <!-- Center Menu -->
+        <ul class="navbar-nav header-menu">
+
+          <li class="nav-item">
+            <a class="nav-link active" href="#home">Home</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#services">Services</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#about-me">About Me</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#portfolio">Portfolio</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="./images/RESUME.pdf">Resume</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#education">My Education</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#contact">Contact</a>
+          </li>
+
+        </ul>
+
+        <!-- Let's Talk Button -->
+        <div class="header-button">
+          <a href="#contact" class="talk-btn">
+
+            <span class="talk-icon">
+
+              <svg
+                viewBox="0 0 14 15"
+                fill="none"
+                width="10"
+                class="arrow arrow-one"
+              >
+                <path
+                  d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024 13.376 11.552z"
+                  fill="currentColor"
+                />
+              </svg>
+
+              <svg
+                viewBox="0 0 14 15"
+                fill="none"
+                width="10"
+                class="arrow arrow-two"
+              >
+                <path
+                  d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+                  fill="currentColor"
+                />
+              </svg>
+
+            </span>
+
+            Let's Talk
+
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </nav>
+</header>
+
+
+<!-- Header End -->
+
+
+
+
+
+
+
+ <!-- HERO SECTION -->
+    <section class="hero-section" id="home">
+
+        <div class="container">
+
+            <div class="row align-items-center">
+
+                <!-- LEFT CONTENT -->
+                <div class="col-lg-6">
+
+                    <div class="hero-content">
+
+                        <p class="hero-intro reveal">
+                            Hello 👋, I'm <span>Shivam Kumar</span>
+                        </p>
+
+                        <h1 class="hero-title reveal">
+                            A Visual Designer
+                            <br>
+                            Specializing In UI & UX
+                        </h1>
+
+                        <p class="hero-description reveal">
+                            We Appreciate Your Trust Greatly Our Clients
+                            Choose Us & Our Products Because They Know
+                            We Are The Best.
+                        </p>
+
+
+                        <!-- BUTTON + SOCIAL ICONS -->
+                        <div class="hero-actions reveal d-flex align-items-center flex-wrap">
+
+                            <!-- View Works -->
+              <a href="" class="butn-circle d-flex align-items-center text-center">
+                <div class="full-width">
+                    <span>
+                        <i class="fa-solid fa-arrow-right-long"></i>
+                    </span>
+                    <br>
+                    <span class="hover">View Works</span>
+                </div>
+
+                <img src="./images/Vector (5).png" alt="" class="circle-star">
+              </a>
+
+
+
+                            <!-- Social Icons -->
+                            <div class="social-icons d-flex">
+
+                                <a href="#+91-6399673869">
+                                    <i class="bi bi-telephone"></i>
+                                </a>
+
+                                <a href="https://web.whatsapp.com/">
+                                    <i class="bi bi-whatsapp"></i>
+                                </a>
+
+                                <a href="https://www.instagram.com/graphic_designer_5k/">
+                                    <i class="bi bi-instagram"></i>
+                                </a>
+
+                                <a href="https://www.linkedin.com/in/shivam-designer-59412439a/">
+                                    <i class="bi bi-linkedin"></i>
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- RIGHT IMAGE -->
+                <div class="col-lg-6">
+
+                    <div class="hero-image-wrapper reveal">
+
+                        <div class="image-glow"></div>
+
+                        <img
+                            src="./images/HERO-IMG.png"
+                            alt="Shivam Kumar"
+                            class="img-fluid hero-image"
+                            id="heroImage"
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- SERVICES MARQUEE -->
+        <div class="services-marquee">
+
+            <div class="marquee-track">
+
+                <div class="service-item">
+                    <span>✣</span>
+                    Web developer
+                </div>
+
+                <div class="service-item">
+                    <span>✣</span>
+                   Graphic Designer
+                </div>
+
+                <div class="service-item">
+                    <span>✣</span>
+                    Web Designer
+                </div>
+
+                <div class="service-item">
+                    <span>✣</span>
+                   Poster & Banner Design
+                </div>
+
+
+                <!-- Duplicate for Infinite Loop -->
+
+                <div class="service-item">
+                    <span>✣</span>
+                   Social Media Design
+                </div>
+
+                <div class="service-item">
+                    <span>✣</span>
+                    Visual Design
+                </div>
+
+                <div class="service-item">
+                    <span>✣</span>
+                    UI-UX Experience
+                </div>
+
+                <div class="service-item">
+                    <span>✣</span>
+                   Brand Identity Design
+                </div>
+
+<!-- Duplicate for Infinite Loop -->
+
+                 <div class="service-item">
+                    <span>✣</span>
+                    Web developer
+                </div>
+
+                <div class="service-item">
+                    <span>✣</span>
+                   Graphic Designer
+                </div>
+
+                <div class="service-item">
+                    <span>✣</span>
+                    Web Designer
+                </div>
+
+                <div class="service-item">
+                    <span>✣</span>
+                   Poster & Banner Design
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+ <!-- HERO SECTION -->
+
+
+<!------------------------------------------------ services-section ----------------------------------------------->
+
+
+<section class="services-section" id="services">
+
+    <div class="container">
+
+        <!-- ================= HEADER ================= -->
+
+        <div class="services-header d-flex justify-content-between align-items-start">
+
+            <div>
+
+                <span class="services-label">
+                    Creative Expertise
+                </span>
+
+                <h2>
+                    Our Services
+                </h2>
+
+            </div>
+
+
+            <!-- VIEW ALL BUTTON -->
+
+            <div class="mai-btn1">
+
+                <a href="#portfolio" class="button">
+
+                    <span class="button__icon-wrapper">
+
+                        <svg
+                            viewBox="0 0 14 15"
+                            fill="none"
+                            width="10"
+                            class="button__icon-svg"
+                        >
+                            <path
+                                d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+                                fill="currentColor"
+                            />
+                        </svg>
+
+
+                        <svg
+                            viewBox="0 0 14 15"
+                            fill="none"
+                            width="10"
+                            class="button__icon-svg button__icon-svg--copy"
+                        >
+                            <path
+                                d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+                                fill="currentColor"
+                            />
+                        </svg>
+
+                    </span>
+
+                    <span class="abutton">
+                        View All Services
+                    </span>
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= SERVICES GRID ================= -->
+
+        <div class="row g-4 services-grid">
+
+
+            <!-- CARD 1 -->
+
+            <div class="col-lg-6 col-md-6">
+
+                <div class="service-card">
+
+                    <div class="card-glow"></div>
+
+                    <div class="service-content">
+
+                        <div class="service-icon">
+                            <i class="bi bi-box"></i>
+                        </div>
+
+                        <div class="service-text">
+
+                            <h3>
+                                Graphic Design & Creative Direction
+                            </h3>
+
+                            <p>
+                                Creating Visual Systems That Shape How People
+                                See, Feel, And Connect With A Brand.
+                            </p>
+
+                            <div class="learn-more">
+
+                                <a href="#contact" class="viweall">
+                                    Explore Service
+                                </a>
+
+                                <i class="bi bi-arrow-right"></i>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CARD 2 -->
+
+            <div class="col-lg-6 col-md-6">
+
+                <div class="service-card">
+
+                    <div class="card-glow"></div>
+
+                    <div class="service-content">
+
+                        <div class="service-icon">
+                            <i class="bi bi-layers"></i>
+                        </div>
+
+                        <div class="service-text">
+
+                            <h3>
+                                UI/UX Design & Digital Experiences
+                            </h3>
+
+                            <p>
+                                Designing intuitive digital experiences that
+                                are clear, engaging, and easy to use.
+                            </p>
+
+                            <div class="learn-more">
+
+                                <a href="#contact" class="viweall">
+                                    Explore Service
+                                </a>
+
+                                <i class="bi bi-arrow-right"></i>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CARD 3 -->
+
+            <div class="col-lg-6 col-md-6">
+
+                <div class="service-card">
+
+                    <div class="card-glow"></div>
+
+                    <div class="service-content">
+
+                        <div class="service-icon">
+                            <i class="bi bi-intersect"></i>
+                        </div>
+
+                        <div class="service-text">
+
+                            <h3>
+                                Visual Identity & Brand Design
+                            </h3>
+
+                            <p>
+                                Building unique identities that give every
+                                brand its own visual voice.
+                            </p>
+
+                            <div class="learn-more">
+
+                                <a href="#contact" class="viweall">
+                                    Explore Service
+                                </a>
+
+                                <i class="bi bi-arrow-right"></i>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CARD 4 -->
+
+            <div class="col-lg-6 col-md-6">
+
+                <div class="service-card">
+
+                    <div class="card-glow"></div>
+
+                    <div class="service-content">
+
+                        <div class="service-icon">
+                            <i class="bi bi-pen"></i>
+                        </div>
+
+                        <div class="service-text">
+
+                            <h3>
+                                Motion Graphics & Video Editing
+                            </h3>
+
+                            <p>
+                                Bringing ideas to life through engaging motion
+                                graphics and creative video content.
+                            </p>
+
+                            <div class="learn-more">
+
+                                <a href="#contact" class="viweall">
+                                    Explore Service
+                                </a>
+
+                                <i class="bi bi-arrow-right"></i>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!------------------------------------------------ services-section end ----------------------------------------------->
+
+
+
+<!------------------------------------------------ 
+Creative UI UX
+ ----------------------------------------------->
+
+<section class="about-section-1" id="about">
+
+    <div class="container">
+
+        <div class="row about-row align-items-center">
+
+
+            <!-- =================================
+                 LEFT CONTENT
+            ================================= -->
+
+            <div class="col-lg-4 col-md-5">
+
+                <div class="about-title reveal">
+
+                    <h1>
+                        Creative UI
+                        <br>
+                        UX Designer
+                    </h1>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================
+                 CENTER IMAGE
+            ================================= -->
+
+            <div class="col-lg-4 col-md-3">
+
+                <div class="about-image-area reveal">
+
+                    <img
+                        src="images/burush.png"
+                        alt="Creative UI UX Designer"
+                        class="about-person"
+                        id="aboutPerson"
+                    >
+                  
+                </div>
+
+            </div>
+            
+
+
+            <!-- =================================
+                 RIGHT CONTENT
+            ================================= -->
+
+            <div class="col-lg-4 col-md-4">
+
+                <div class="about-right reveal">
+
+
+                    <!-- EXPERIENCE -->
+
+                    <div class="experience-box">
+
+                        <span>
+                            1+ Years Experience
+                        </span>
+
+                    </div>
+
+
+                    <!-- DESCRIPTION -->
+
+                    <p class="about-description">
+
+                        I'm Creative Independent Web
+                        Developer, And I'm Very Passionate
+                        And Dedicated To My Work, Using
+                        Year-Over-Year Design Approaches
+                        And The Latest Technologies.
+
+                    </p>
+
+
+                    <!-- STAT -->
+
+                    <div class="about-stat">
+
+                        <div
+                            class="stat-number"
+                            data-target="1000"
+                        >
+                            0
+                        </div>
+
+                        <div class="stat-text">
+
+                            <span>
+                                Happy Users
+                            </span>
+
+                            <span>
+                                Around World
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!------------------------------------------------ 
+Creative UI UX end
+ ----------------------------------------------->
+
+
+
+ <!------------------------------------------------ 
+Portfolio start
+ ----------------------------------------------->
+<!-- =========================================
+     PROJECTS SECTION
+========================================= -->
+
+<section class="projects-section" id="portfolio">
+
+  <div class="project-container">
+
+    <!-- SECTION HEADING -->
+    <div class="section-top">
+
+      <div class="section-heading">
+
+        <span class="small-title">
+          SELECTED WORK
+        </span>
+
+        <h2>
+          Creative <span>Projects.</span>
+        </h2>
+
+      </div>
+
+      <p>
+        A selection of branding, UI/UX, web design and creative projects
+        crafted with strategy and visual storytelling.
+      </p>
+
+    </div>
+
+
+    <!-- =====================================
+         PROJECT GRID
+    ====================================== -->
+
+    <div class="projects-grid">
+
+
+      <!-- ================= PROJECT 01 ================= -->
+
+      <article class="project-card cursor-hover">
+
+        <div class="project-image">
+
+          <img
+            src="./images/ui-ux.png"
+            alt="Mobile App UI UX Project"
+          >
+
+          <!-- Mouse Spotlight -->
+          <div class="project-overlay"></div>
+
+          <!-- Project Number -->
+          <span class="project-number">
+            01
+          </span>
+
+          <!-- View Button -->
+          <div class="view-project">
+
+            <span>VIEW</span>
+            <span>PROJECT</span>
+
+            <span class="view-arrow">
+              ↗
+            </span>
+
+          </div>
+
+          
+
+        </div>
+
+
+        <!-- PROJECT INFO -->
+
+        <div class="project-info">
+
+          <div>
+
+            <h3>
+             Mobile App
+            </h3>
+
+            <div class="project-tags">
+
+              <span>
+                UI/UX
+              </span>
+
+              <span>
+                Web Design
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <span class="project-arrow">
+            ↗
+          </span>
+
+        </div>
+
+      </article>
+
+
+
+      <!-- ================= PROJECT 02 ================= -->
+
+      <article class="project-card cursor-hover">
+
+        <div class="project-image">
+
+          <img
+            src="./images/Mask group.png"
+            alt="Raw Studio Branding Project"
+          >
+
+          <div class="project-overlay"></div>
+
+          <span class="project-number">
+            02
+          </span>
+
+
+          <div class="view-project">
+
+            <span>VIEW</span>
+            <span>PROJECT</span>
+
+            <span class="view-arrow">
+              ↗
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="project-info">
+
+          <div>
+
+            <h3>
+              Raw Studio
+            </h3>
+
+            <div class="project-tags">
+
+              <span>
+                Branding
+              </span>
+
+              <span>
+                Graphic Design
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <span class="project-arrow">
+            ↗
+          </span>
+
+        </div>
+
+      </article>
+
+
+
+      <!-- ================= PROJECT 03 ================= -->
+
+      <article class="project-card cursor-hover">
+
+        <div class="project-image">
+
+          <img
+            src="./images/design.png"
+            alt="Art Direction Creative Project"
+          >
+
+          <div class="project-overlay"></div>
+
+          <span class="project-number">
+            03
+          </span>
+
+
+          <div class="view-project">
+
+            <span>VIEW</span>
+            <span>PROJECT</span>
+
+            <span class="view-arrow">
+              ↗
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="project-info">
+
+          <div>
+
+            <h3>
+              Art Direction
+            </h3>
+
+            <div class="project-tags">
+
+              <span>
+                Creative
+              </span>
+
+              <span>
+                Campaign
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <span class="project-arrow">
+            ↗
+          </span>
+
+        </div>
+
+      </article>
+
+
+
+      <!-- ================= PROJECT 04 ================= -->
+
+      <article class="project-card cursor-hover">
+
+        <div class="project-image">
+
+          <img
+            src="./images/web (2).png"
+            alt="Mono Agency Website Project"
+          >
+
+          <div class="project-overlay"></div>
+
+          <span class="project-number">
+            04
+          </span>
+
+
+          <div class="view-project">
+
+            <span>VIEW</span>
+            <span>PROJECT</span>
+
+            <span class="view-arrow">
+              ↗
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="project-info">
+
+          <div>
+
+            <h3>
+              Mono Agency
+            </h3>
+
+            <div class="project-tags">
+
+              <span>
+                Website
+              </span>
+
+              <span>
+                Development
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <span class="project-arrow">
+            ↗
+          </span>
+
+        </div>
+
+      </article>
+
+
+    </div>
+
+
+    <div class="projects-grid">
+
+
+      <!-- ================= PROJECT 01 ================= -->
+
+      <article class="project-card cursor-hover">
+
+        <div class="project-image">
+
+          <img
+            src="./images/web-1.png"
+            alt="Mobile App UI UX Project"
+          >
+
+          <!-- Mouse Spotlight -->
+          <div class="project-overlay"></div>
+
+          <!-- Project Number -->
+          <span class="project-number">
+            01
+          </span>
+
+          <!-- View Button -->
+          <div class="view-project">
+
+            <span>VIEW</span>
+            <span>PROJECT</span>
+
+            <span class="view-arrow">
+              ↗
+            </span>
+
+          </div>
+
+          
+
+        </div>
+
+
+        <!-- PROJECT INFO -->
+
+        <div class="project-info">
+
+          <div>
+
+            <h3>
+             Mobile App
+            </h3>
+
+            <div class="project-tags">
+
+              <span>
+                UI/UX
+              </span>
+
+              <span>
+                Web Design
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <span class="project-arrow">
+            ↗
+          </span>
+
+        </div>
+
+      </article>
+
+
+
+      <!-- ================= PROJECT 02 ================= -->
+
+      <article class="project-card cursor-hover">
+
+        <div class="project-image">
+
+          <img
+            src="./images/web-2.png"
+            alt="Raw Studio Branding Project"
+          >
+
+          <div class="project-overlay"></div>
+
+          <span class="project-number">
+            02
+          </span>
+
+
+          <div class="view-project">
+
+            <span>VIEW</span>
+            <span>PROJECT</span>
+
+            <span class="view-arrow">
+              ↗
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="project-info">
+
+          <div>
+
+            <h3>
+              Mobile App
+            </h3>
+
+            <div class="project-tags">
+
+              <span>
+                UI/UX
+              </span>
+
+              <span>
+                Web design
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <span class="project-arrow">
+            ↗
+          </span>
+
+        </div>
+
+      </article>
+
+
+
+      <!-- ================= PROJECT 03 ================= -->
+
+      <article class="project-card cursor-hover">
+
+        <div class="project-image">
+
+          <img
+            src="./images/web-3.png"
+            alt="Art Direction Creative Project"
+          >
+
+          <div class="project-overlay"></div>
+
+          <span class="project-number">
+            03
+          </span>
+
+
+          <div class="view-project">
+
+            <span>VIEW</span>
+            <span>PROJECT</span>
+
+            <span class="view-arrow">
+              ↗
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="project-info">
+
+          <div>
+
+            <h3>
+              Mobile App
+            </h3>
+
+            <div class="project-tags">
+
+              <span>
+               UI/UX
+              </span>
+
+              <span>
+                Web design
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <span class="project-arrow">
+            ↗
+          </span>
+
+        </div>
+
+      </article>
+
+
+
+      <!-- ================= PROJECT 04 ================= -->
+
+      <article class="project-card cursor-hover">
+
+        <div class="project-image">
+
+          <img
+            src="./images/web-4.png"
+            alt="Mono Agency Website Project"
+          >
+
+          <div class="project-overlay"></div>
+
+          <span class="project-number">
+            04
+          </span>
+
+
+          <div class="view-project">
+
+            <span>VIEW</span>
+            <span>PROJECT</span>
+
+            <span class="view-arrow">
+              ↗
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="project-info">
+
+          <div>
+
+            <h3>
+              Mono Agency
+            </h3>
+
+            <div class="project-tags">
+
+              <span>
+                Website
+              </span>
+
+              <span>
+                Development
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <span class="project-arrow">
+            ↗
+          </span>
+
+        </div>
+
+      </article>
+
+
+    </div>
+
+    <div class="projects-grid">
+
+
+      <!-- ================= PROJECT 01 ================= -->
+
+      <article class="project-card cursor-hover">
+
+        <div class="project-image">
+
+          <img
+            src="./images/shliajitpost.jpg.jpeg"
+            alt="Mobile App UI UX Project"
+          >
+
+          <!-- Mouse Spotlight -->
+          <div class="project-overlay"></div>
+
+          <!-- Project Number -->
+          <span class="project-number">
+            01
+          </span>
+
+          <!-- View Button -->
+          <div class="view-project">
+
+            <span>VIEW</span>
+            <span>PROJECT</span>
+
+            <span class="view-arrow">
+              ↗
+            </span>
+
+          </div>
+
+          
+
+        </div>
+
+
+        <!-- PROJECT INFO -->
+
+        <div class="project-info">
+
+          <div>
+
+            <h3>
+             Raw Studio
+            </h3>
+
+            <div class="project-tags">
+
+              <span>
+               Branding
+              </span>
+
+              <span>
+               Graphic Design
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <span class="project-arrow">
+            ↗
+          </span>
+
+        </div>
+
+      </article>
+
+
+
+      <!-- ================= PROJECT 02 ================= -->
+
+      <article class="project-card cursor-hover">
+
+        <div class="project-image">
+
+          <img
+            src="./images/Shilajit-box.jpg.jpeg"
+            alt="Raw Studio Branding Project"
+          >
+
+          <div class="project-overlay"></div>
+
+          <span class="project-number">
+            02
+          </span>
+
+
+          <div class="view-project">
+
+            <span>VIEW</span>
+            <span>PROJECT</span>
+
+            <span class="view-arrow">
+              ↗
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="project-info">
+
+          <div>
+
+            <h3>
+              Raw Studio
+            </h3>
+
+            <div class="project-tags">
+
+              <span>
+                Branding
+              </span>
+
+              <span>
+                Graphic Design
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <span class="project-arrow">
+            ↗
+          </span>
+
+        </div>
+
+      </article>
+
+
+
+      <!-- ================= PROJECT 03 ================= -->
+
+      <article class="project-card cursor-hover">
+
+        <div class="project-image">
+
+          <img
+            src="./images/postdesign.jpg.jpeg"
+            alt="Art Direction Creative Project"
+          >
+
+          <div class="project-overlay"></div>
+
+          <span class="project-number">
+            03
+          </span>
+
+
+          <div class="view-project">
+
+            <span>VIEW</span>
+            <span>PROJECT</span>
+
+            <span class="view-arrow">
+              ↗
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="project-info">
+
+          <div>
+
+            <h3>
+              Art Direction
+            </h3>
+
+            <div class="project-tags">
+
+              <span>
+                Creative
+              </span>
+
+              <span>
+                Campaign
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <span class="project-arrow">
+            ↗
+          </span>
+
+        </div>
+
+      </article>
+
+
+
+      <!-- ================= PROJECT 04 ================= -->
+
+      <article class="project-card cursor-hover">
+
+        <div class="project-image">
+
+          <img
+            src="./images/Graphic Design.jfif.jpeg"
+            alt="Mono Agency Website Project"
+          >
+
+          <div class="project-overlay"></div>
+
+          <span class="project-number">
+            04
+          </span>
+
+
+          <div class="view-project">
+
+            <span>VIEW</span>
+            <span>PROJECT</span>
+
+            <span class="view-arrow">
+              ↗
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="project-info">
+
+          <div>
+
+            <h3>
+              Raw Studio
+            </h3>
+
+            <div class="project-tags">
+
+              <span>
+               Branding
+              </span>
+
+              <span>
+                Graphic Design
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <span class="project-arrow">
+            ↗
+          </span>
+
+        </div>
+
+      </article>
+
+
+    </div>
+
+
+    <div class="projects-grid">
+
+
+      <!-- ================= PROJECT 01 ================= -->
+
+      <article class="project-card cursor-hover">
+
+        <div class="project-image">
+
+          <img
+            src="./images/trable.png"
+            alt="Mobile App UI UX Project"
+          >
+
+          <!-- Mouse Spotlight -->
+          <div class="project-overlay"></div>
+
+          <!-- Project Number -->
+          <span class="project-number">
+            01
+          </span>
+
+          <!-- View Button -->
+          <div class="view-project">
+
+            <span>VIEW</span>
+            <span>PROJECT</span>
+
+            <span class="view-arrow">
+              ↗
+            </span>
+
+          </div>
+
+          
+
+        </div>
+
+
+        <!-- PROJECT INFO -->
+
+        <div class="project-info">
+
+          <div>
+
+            <h3>
+             Raw Studio
+            </h3>
+
+            <div class="project-tags">
+
+              <span>
+               Branding
+              </span>
+
+              <span>
+               Graphic Design
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <span class="project-arrow">
+            ↗
+          </span>
+
+        </div>
+
+      </article>
+
+
+
+      <!-- ================= PROJECT 02 ================= -->
+
+      <article class="project-card cursor-hover">
+
+        <div class="project-image">
+
+          <img
+            src="./images/food.png"
+            alt="Raw Studio Branding Project"
+          >
+
+          <div class="project-overlay"></div>
+
+          <span class="project-number">
+            02
+          </span>
+
+
+          <div class="view-project">
+
+            <span>VIEW</span>
+            <span>PROJECT</span>
+
+            <span class="view-arrow">
+              ↗
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="project-info">
+
+          <div>
+
+            <h3>
+              Raw Studio
+            </h3>
+
+            <div class="project-tags">
+
+              <span>
+                Branding
+              </span>
+
+              <span>
+                Graphic Design
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <span class="project-arrow">
+            ↗
+          </span>
+
+        </div>
+
+      </article>
+
+
+
+      <!-- ================= PROJECT 03 ================= -->
+
+      <article class="project-card cursor-hover">
+
+        <div class="project-image">
+
+          <img
+            src="./images/bargar.png"
+            alt="Art Direction Creative Project"
+          >
+
+          <div class="project-overlay"></div>
+
+          <span class="project-number">
+            03
+          </span>
+
+
+          <div class="view-project">
+
+            <span>VIEW</span>
+            <span>PROJECT</span>
+
+            <span class="view-arrow">
+              ↗
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="project-info">
+
+          <div>
+
+            <h3>
+              Art Direction
+            </h3>
+
+            <div class="project-tags">
+
+              <span>
+                Creative
+              </span>
+
+              <span>
+                Campaign
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <span class="project-arrow">
+            ↗
+          </span>
+
+        </div>
+
+      </article>
+
+
+
+      <!-- ================= PROJECT 04 ================= -->
+
+      <article class="project-card cursor-hover">
+
+        <div class="project-image">
+
+          <img
+            src="./images/dash-board.png"
+            alt="Mono Agency Website Project"
+          >
+
+          <div class="project-overlay"></div>
+
+          <span class="project-number">
+            04
+          </span>
+
+
+          <div class="view-project">
+
+            <span>VIEW</span>
+            <span>PROJECT</span>
+
+            <span class="view-arrow">
+              ↗
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="project-info">
+
+          <div>
+
+            <h3>
+              Raw Studio
+            </h3>
+
+            <div class="project-tags">
+
+              <span>
+               Branding
+              </span>
+
+              <span>
+                Graphic Design
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <span class="project-arrow">
+            ↗
+          </span>
+
+        </div>
+
+      </article>
+
+
+    </div>
+
+  </div>
+
+
+  
+
+</section>
+
+
+
+<!-- =========================================
+     CUSTOM CURSOR
+========================================= -->
+
+<div class="cursor-dot"></div>
+
+<div class="cursor-circle"></div>
+
+ <!------------------------------------------------ 
+Portfolio end
+ ----------------------------------------------->
+
+
+
+
+ <!------------------------------------------------ 
+Skills & Experience start
+ ----------------------------------------------->
+<section class="about-section" id="about-me">
+
+  <div class="about-container">
+
+    <!-- =========================
+         LEFT + RIGHT TOP AREA
+    ========================== -->
+
+    <div class="about-top">
+
+      <!-- PERSONAL INFO -->
+      <div class="personal-info">
+
+        <div class="section-label">
+          Skills & Experience
+        </div>
+
+        <h2>PERSONAL INFOS</h2>
+
+        <div class="info-grid">
+
+          <!-- LEFT INFO -->
+          <div class="info-column">
+
+            <p>
+              <span>First Name :</span>
+              Shivam
+            </p>
+
+            <p>
+              <span>Last Name :</span>
+              Kumar
+            </p>
+
+            <p>
+              <span>Age :</span>
+              21 Years
+            </p>
+
+            <p>
+              <span>Nationality :</span>
+              _______
+            </p>
+
+            <p>
+              <span>Freelance :</span>
+              _______
+            </p>
+
+          </div>
+
+
+          <!-- RIGHT INFO -->
+          <div class="info-column">
+
+            <p>
+              <span>Address :</span>
+              Betla, Sambhal, U.P
+            </p>
+
+            <p>
+              <span>Phone :</span>
+              +91639673869
+            </p>
+
+            <p>
+              <span>Email :</span>
+              Sp9859864@gmail.com
+            </p>
+
+            <p>
+              <span>Skype :</span>
+              ________
+            </p>
+
+            <p>
+              <span>Languages :</span>
+              English, Hindi
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- DOWNLOAD BUTTON -->
+
+        <a href="./images/RESUME.pdf" class="download-btn" download>
+
+          <span>DOWNLOAD CV</span>
+
+          <div class="download-icon">
+            ↓
+          </div>
+
+        </a>
+
+      </div>
+
+
+      <!-- =========================
+           STATS
+      ========================== -->
+
+      <div class="stats-grid">
+
+        <!-- CARD 1 -->
+        <div class="stat-card">
+
+          <div class="stat-number">
+            <span class="counter" data-target="2">0</span>+
+          </div>
+
+          <div class="stat-content">
+
+            <span class="stat-line"></span>
+
+            <div>
+              YEARS OF
+              <br>
+              EXPERIENCE
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- CARD 2 -->
+        <div class="stat-card">
+
+          <div class="stat-number">
+            <span class="counter" data-target="100">0</span>+
+          </div>
+
+          <div class="stat-content">
+
+            <span class="stat-line"></span>
+
+            <div>
+              PROJECT OF
+              <br>
+              EXPERIENCE
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- CARD 3 -->
+        <div class="stat-card">
+
+          <div class="stat-number">
+            <span class="counter" data-target="50">0</span>+
+          </div>
+
+          <div class="stat-content">
+
+            <span class="stat-line"></span>
+
+            <div>
+              HAPPY
+              <br>
+              CUSTOMERS
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- CARD 4 -->
+        <div class="stat-card">
+
+          <div class="stat-number">
+            <span class="counter" data-target="10">0</span>+
+          </div>
+
+          <div class="stat-content">
+
+            <span class="stat-line"></span>
+
+            <div>
+              AWARDS
+              <br>
+              WON
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- =========================
+         MY SKILLS HEADING
+    ========================== -->
+
+    <div class="skills-heading">
+
+      <span></span>
+
+      <h3>MY SKILLS</h3>
+
+      <span></span>
+
+    </div>
+
+
+    <!-- =========================
+         SKILLS
+    ========================== -->
+<div class="main-div-icon">
+<div class="mai-icon d-flex gap-4">
+    <div class="skill-grid">
+      <div class="image-hover html-card">
+        <img src="./images/image 1.png" alt="">
+        <img src="./images/image 1.png" alt="">
+      </div>
+    </div>
+<div class="skill-grid css-card">
+      <div class="image-hover">
+        <img src="./images/css-c.png" alt="">
+        <img src="./images/css-c.png" alt="">
+      </div>
+    </div>
+    <div class="skill-grid">
+      <div class="image-hover html-card">
+        <img src="./images/js-c.png" alt="">
+        <img src="./images/js-c.png" alt="">
+      </div>
+    </div>
+    <div class="skill-grid css-card">
+      <div class="image-hover html-card">
+        <img src="./images/boot-c.png" alt="">
+        <img src="./images/boot-c.png" alt="">
+      </div>
+    </div>
+    <div class="skill-grid">
+      <div class="image-hover html-card">
+        <img src="./images/word-c.png" alt="">
+        <img src="./images/word-c.png" alt="">
+      </div>
+    </div>
+  
+
+
+    </div>
+
+    <div class="mai-icon d-flex gap-4 mt-4" id="down-icon">
+    <div class="skill-grid css-card">
+      <div class="image-hover html-card">
+        <img src="./images/figma-c.png" alt="">
+        <img src="./images/figma-c.png" alt="">
+      </div>
+    </div>
+<div class="skill-grid">
+      <div class="image-hover html-card">
+        <img src="./images/ps-c.png" alt="">
+        <img src="./images/ps-c.png" alt="">
+      </div>
+    </div>
+    <div class="skill-grid css-card">
+      <div class="image-hover html-card">
+        <img src="./images/ai-c.png" alt="">
+        <img src="./images/ai-c.png" alt="">
+      </div>
+    </div>
+    <div class="skill-grid">
+      <div class="image-hover html-card">
+        <img src="./images/ae-c.png" alt="">
+        <img src="./images/ae-c.png" alt="">
+      </div>
+    </div>
+    <div class="skill-grid css-card">
+      <div class="image-hover html-card">
+        <img src="./images/pr-c.png" alt="">
+        <img src="./images/pr-c.png" alt="">
+      </div>
+    </div>
+  </div>
+  </div>
+
+  
+  </div>
+
+</section>
+
+ <!------------------------------------------------ 
+Skills & Experience end
+ ----------------------------------------------->
+
+
+ <!------------------------------------------------ 
+contact start
+ ----------------------------------------------->
+
+<section class="contact-section" id="contact">
+
+    <!-- Background Grid -->
+    <div class="grid-bg"></div>
+
+    <div class="container">
+
+        <!-- Heading -->
+        <div class="contact-heading">
+            <span class="outline-title">CONTACT</span>
+
+            <h2>
+                Get In <strong>Touch</strong>
+            </h2>
+        </div>
+
+
+        <div class="contact-wrapper">
+
+            <!-- ================= LEFT SIDE ================= -->
+            <div class="contact-left">
+
+                <!-- Profile + Social -->
+                <div class="top-contact">
+
+                    <!-- Profile -->
+                    <div class="profile-card">
+                        <img src="./images/HERO-IMG.png" alt="Profile">
+                    </div>
+
+                    <!-- Social -->
+                    <div class="social-card">
+
+                        <p>Follow Me</p>
+
+                        <div class="social-row">
+
+                            <a href="https://www.linkedin.com/in/shivam-designer-59412439a/" class="social-btn">
+                                <i class="fa-brands fa-linkedin-in"></i>
+                                <span>Linkedin</span>
+                            </a>
+
+                            <a href="https://www.instagram.com/graphic_designer_5k/" class="social-btn">
+                                <i class="fa-brands fa-instagram"></i>
+                                <span>Instagram</span>
+                            </a>
+
+                        </div>
+
+                        <a href="#" class="social-btn whatsapp">
+                            <i class="fa-brands fa-whatsapp"></i>
+                            <span>Whatsapp</span>
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Email Phone -->
+              
+                <div class="card-contact d-flex gap-3">
+                  <div class="card-email">
+
+                    <!-- <div class="card-icon">
+
+                    </div> -->
+                    <div class="card-details">
+                      <span>Email</span>
+                      <p>sp9859864@gmail.com</p>
+                    </div>
+                  </div>
+
+                   <div class="card-email">
+
+                    <!-- <div class="card-icon">
+
+                    </div> -->
+                    <div class="card-details">
+                      <span>Phone</span>
+                      <p>+91-6399673869</p>
+                    </div>
+                  </div>
+                </div>
+
+
+                <!-- Map -->
+                <div class="map-box">
+
+                    <iframe
+                        src="https://www.google.com/maps?q=Sambhal,Uttar%20Pradesh&output=embed"
+                        loading="lazy">
+                    </iframe>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= RIGHT SIDE ================= -->
+            <div class="contact-form-card">
+
+                <form id="contactForm">
+
+                    <!-- Name -->
+                    <div class="form-group">
+
+                        <label for="name">Full Name</label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            placeholder="Enter Your Name"
+                            required>
+
+                    </div>
+
+
+                    <!-- Email -->
+                    <div class="form-group">
+
+                        <label for="email">Email</label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="Enter Your Email"
+                            required>
+
+                    </div>
+
+
+                    <!-- Message -->
+                    <div class="form-group">
+
+                        <label for="message">Message</label>
+
+                        <textarea
+                            id="message"
+                            placeholder="Tell Us What You Wish To Discuss..."
+                            required></textarea>
+
+                    </div>
+
+
+                    <!-- Submit -->
+                    <button type="submit" class="submit-btn">
+
+                        <span>Submit</span>
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </button>
+
+                    <!-- Success Message -->
+                    <div id="successMessage" class="success-message">
+                        <i class="fa-solid fa-circle-check"></i>
+                        Message sent successfully!
+                    </div>
+<!-- PRINTED DATA -->
+<div id="formData" class="form-data"></div>
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+  <!------------------------------------------------ 
+contact end
+ ----------------------------------------------->
+
+
+   <!------------------------------------------------ 
+MY Education start
+ ----------------------------------------------->
+
+<section class="academic-section" id="education">
+
+    <div class="academic-container">
+
+        <!-- Heading -->
+        <div class="academic-heading reveal">
+
+            <span class="academic-bg-title">
+                MY EDUCATION
+            </span>
+
+            <h2>
+                ACADEMIC
+                <strong>JOURNEY</strong>
+            </h2>
+
+        </div>
+
+
+        <!-- Cards -->
+        <div class="academic-grid">
+
+            <!-- Card 1 -->
+            <div class="education-card reveal">
+
+                <div class="education-content">
+
+                    <div class="education-icon">
+                        <i class="fa-solid fa-book-open"></i>
+                    </div>
+
+                    <div class="education-details">
+                        <h3>HIGH SCHOOL (10TH)</h3>
+                        <p>UP Board | Completed</p>
+                    </div>
+
+                </div>
+
+                <span class="education-year">2023</span>
+
+            </div>
+
+
+            <!-- Card 2 -->
+            <div class="education-card reveal">
+
+                <div class="education-content">
+
+                    <div class="education-icon">
+                        <i class="fa-solid fa-palette"></i>
+                    </div>
+
+                    <div class="education-details">
+                        <h3>INTERMEDIATE (12TH)</h3>
+                        <p>UP Board | Science Stream</p>
+                    </div>
+
+                </div>
+
+                <span class="education-year">2025</span>
+
+            </div>
+
+
+            <!-- Card 3 -->
+            <div class="education-card reveal">
+
+                <div class="education-content">
+
+                    <div class="education-icon">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+
+                    <div class="education-details">
+                        <h3>BACHELOR OF COMPUTER APPLICATIONS</h3>
+                        <p>Mangalayatan University | Pursuing</p>
+                    </div>
+
+                </div>
+
+                <span class="education-year">2025</span>
+
+            </div>
+
+
+            <!-- Card 4 -->
+            <div class="education-card reveal">
+
+                <div class="education-content">
+
+                    <div class="education-icon">
+                        <i class="fa-solid fa-laptop-code"></i>
+                    </div>
+
+                    <div class="education-details">
+                        <h3>GRAPHIC & WEB DESIGN</h3>
+                        <p>New Media Animation | GFSD</p>
+                    </div>
+
+                </div>
+
+                <span class="education-year">2026</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+    <!------------------------------------------------ 
+MY Education end
+ ----------------------------------------------->
+
+
+ <!-- =========================================
+     CREATIVE PORTFOLIO FOOTER
+========================================= -->
+
+<footer class="creative-footer">
+
+    <!-- Glow Background -->
+    <div class="footer-glow"></div>
+
+    <div class="footer-container">
+
+        <!-- ================= CTA ================= -->
+      
+        <!-- ================= FOOTER CONTENT ================= -->
+        <div class="footer-main">
+
+            <!-- Brand -->
+            <div class="footer-brand">
+
+                <a href="#" class="footer-img">
+                   <img src="./images/logo.png" alt="">
+                </a>
+
+                <p>
+                    Graphic Designer & Frontend Developer
+                    creating clean, creative and modern
+                    digital experiences.
+                </p>
+
+                <a
+                    href="mailto:sp9859864@gmail.com"
+                    class="footer-email"
+                >
+                    sp9859864@gmail.com
+                </a>
+<br>
+                  <a
+                    href="Phoneto:+91-6399673869"
+                    class="footer-email"
+                >
+                   +91-6399673869
+                </a>
+
+            </div>
+
+
+            <!-- Navigation -->
+            <div class="footer-column">
+
+                <h4>Navigation</h4>
+
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#portfolio">Works</a>
+                <a href="#contact">Contact</a>
+
+            </div>
+
+
+            <!-- Services -->
+            <div class="footer-column">
+
+                <h4>Expertise</h4>
+
+                <a href="#">Graphic Design</a>
+                <a href="#">UI / UX Design</a>
+                <a href="#">Web Design</a>
+                <a href="#">Frontend Development</a>
+                <a href="#">Motion Graphics</a>
+
+            </div>
+
+
+            <!-- Social -->
+            <div class="footer-column footer-social">
+
+                <h4>Follow Me</h4>
+
+                <a href="https://www.linkedin.com/in/shivam-designer-59412439a/" target="_blank">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                    LinkedIn
+                </a>
+
+                <a href="https://www.instagram.com/graphic_designer_5k/" target="_blank">
+                    <i class="fa-brands fa-instagram"></i>
+                    Instagram
+                </a>
+
+                <a href="https://web.whatsapp.com/" target="_blank">
+                   <i class="fa-brands fa-whatsapp"></i>
+                    Whatsapp
+                </a>
+
+                <a href="#Facebook" target="_blank">
+                   <i class="fa-brands fa-facebook-f"></i>
+                    Facebook
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= BOTTOM ================= -->
+        <div class="footer-bottom">
+
+            <p>
+                © <span id="footerYear"></span>
+                Shivam Kumar. All Rights Reserved.
+            </p>
+
+            <p class="footer-made">
+                Designed & Developed with
+                <span>✦</span>
+            </p>
+
+           <a href="#" style="text-decoration: none;"> <button
+                class="back-top"
+                id="backTop"
+                aria-label="Back to top"
+            >
+                <i class="fa-solid fa-arrow-up"></i>
+            </button></a>
+
+        </div>
+
+    </div>
+
+</footer>
+
+<!-- footer end -->
+
+
+<script src="script.js"></script>
+
+    <!-- Add bootstrap js -->\
+     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    
+</body>
+</html>
